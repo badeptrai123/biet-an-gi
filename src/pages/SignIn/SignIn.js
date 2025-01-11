@@ -3,11 +3,26 @@ import { Link } from "react-router-dom";
 import "./SignIn.scss";
 import { GoogleIcon } from "../../CustomIcon";
 import Logo from "../../assets/logo.png";
+import { schema } from "../../utils/rule";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function SignIn() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data) => {
+    console.log("data", data)
+  };
+
   return (
     <Box className="container">
-      <Box className="sign-in">
+      <form className="sign-in" onSubmit={handleSubmit(onSubmit)}>
         <Box className="text-center flex justify-center">
           <img
             src={Logo}
@@ -25,7 +40,10 @@ export default function SignIn() {
             label="Username"
             type="text"
             variant="outlined"
+            {...register('username')}
           />
+          {errors.username?.message && (
+            <p className="error-message">{errors.username?.message}</p>)}
         </Box>
         <Box className="mt-2">
           <TextField
@@ -34,10 +52,13 @@ export default function SignIn() {
             label="Mật khẩu"
             type="password"
             variant="outlined"
+            {...register('password')}
           />
+          {errors.password?.message && (
+            <p className="error-message">{errors.password?.message}</p>)}
         </Box>
         <Box className="mt-2">
-          <Button className="btn-sign-in" variant="contained" fullWidth>
+          <Button type="submit" className="btn-sign-in" variant="contained" fullWidth>
             Đăng nhập
           </Button>
         </Box>
@@ -59,7 +80,7 @@ export default function SignIn() {
             Đăng ký
           </Link>
         </p>
-      </Box>
+      </form>
     </Box>
   );
 }

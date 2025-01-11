@@ -20,7 +20,7 @@ export default function SignUp() {
 
   return (
     <Box className="container">
-      <form form className="sign-up" onSubmit={handleSubmit(onSubmit)}>
+      <form className="sign-up" onSubmit={handleSubmit(onSubmit)}>
         <Box className="text-center flex justify-center">
           <img
             src={Logo}
