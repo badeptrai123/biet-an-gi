@@ -1,6 +1,7 @@
 import { Box, Button, FormControl, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./SignUp.scss";
+import Logo from "../../assets/logo.png";
 import { GoogleIcon } from "../../CustomIcon";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -19,19 +20,28 @@ export default function SignUp() {
 
   return (
     <Box className="container">
-      <form className="sign-up" onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="text-center text-[26px] font-bold uppercase">Đăng ký</h1>
+      <form form className="sign-up" onSubmit={handleSubmit(onSubmit)}>
+        <Box className="text-center flex justify-center">
+          <img
+            src={Logo}
+            alt="Logo"
+            className="w-[150px] h-auto object-cover"
+          />
+        </Box>
+        <h1 className="text-center text-[26px] font-bold uppercase mt-2">
+          Đăng ký
+        </h1>
         <Box className="mt-2">
           <TextField
             fullWidth
             size="small"
-            label="Email"
+            label="Username"
             type="text"
             variant="outlined"
-            {...register("email")}
+            {...register("username")}
           />
-          {errors.email?.message && (
-            <p className="error-message">{errors.email?.message}</p>
+          {errors.username?.message && (
+            <p className="error-message">{errors.username?.message}</p>
           )}
         </Box>
         <Box className="mt-2">
@@ -83,7 +93,7 @@ export default function SignUp() {
           Bạn đã có tài khoản.{" "}
           <Link
             className="underline text-[#315dec] hover:text-[#274196] transition-colors"
-            to="/login"
+            to="/sign-in"
           >
             Đăng nhập
           </Link>

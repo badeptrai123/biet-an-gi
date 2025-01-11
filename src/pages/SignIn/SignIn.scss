@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f7fbff;
+    .sign-in {
+      padding: 32px;
+      width: 380px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      border: 1px solid #f0f0f0;
+  
+      .btn-sign-in {
+        background: #202632;
+        color: #fff;
+        border: none;
+        padding: 6px;
+        border-radius: 6px;
+        text-transform: inherit;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          background: #1a1f26;
+        }
+      }
+      .btn-login-with-google {
+        display: flex;
+        align-items: center;
+        border: 1px solid rgb(218, 222, 231);
+        text-transform: inherit;
+        &:hover {
+          background-color: rgb(235, 238, 244);
+          border-color: rgb(194, 201, 214);
+        }
+  
+        .MuiSvgIcon-root {
+          color: #f00;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  
