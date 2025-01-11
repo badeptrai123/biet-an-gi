@@ -1,12 +1,25 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, FormControl, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./SignUp.scss";
 import { GoogleIcon } from "../../CustomIcon";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "../../utils/rule";
 
 export default function SignUp() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data) => console.log("data", data);
+
   return (
     <Box className="container">
-      <Box className="sign-up">
+      <form className="sign-up" onSubmit={handleSubmit(onSubmit)}>
         <h1 className="text-center text-[26px] font-bold uppercase">Đăng ký</h1>
         <Box className="mt-2">
           <TextField
@@ -15,7 +28,11 @@ export default function SignUp() {
             label="Email"
             type="text"
             variant="outlined"
+            {...register("email")}
           />
+          {errors.email?.message && (
+            <p className="error-message">{errors.email?.message}</p>
+          )}
         </Box>
         <Box className="mt-2">
           <TextField
@@ -24,7 +41,11 @@ export default function SignUp() {
             label="Mật khẩu"
             type="password"
             variant="outlined"
+            {...register("password")}
           />
+          {errors.password?.message && (
+            <p className="error-message">{errors.password?.message}</p>
+          )}
         </Box>
         <Box className="mt-2">
           <TextField
@@ -33,10 +54,19 @@ export default function SignUp() {
             label="Xác nhận mật khẩu"
             type="password"
             variant="outlined"
+            {...register("confirm_password")}
           />
+          {errors.confirm_password?.message && (
+            <p className="error-message">{errors.confirm_password?.message}</p>
+          )}
         </Box>
         <Box className="mt-2">
-          <Button className="btn-sign-up" variant="contained" fullWidth>
+          <Button
+            className="btn-sign-up"
+            variant="contained"
+            fullWidth
+            type="submit"
+          >
             Đăng ký
           </Button>
         </Box>
@@ -58,7 +88,7 @@ export default function SignUp() {
             Đăng nhập
           </Link>
         </p>
-      </Box>
+      </form>
     </Box>
   );
 }
