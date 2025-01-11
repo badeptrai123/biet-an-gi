@@ -2,7 +2,7 @@ import { Box, Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./SignIn.scss";
 import { GoogleIcon } from "../../CustomIcon";
-import Logo from '../../assets/logo.png'
+import Logo from "../../assets/logo.png";
 
 export default function SignIn() {
   return (
@@ -15,12 +15,14 @@ export default function SignIn() {
             className="w-[150px] h-auto object-cover"
           />
         </Box>
-        <h1 className="text-center text-[26px] font-bold uppercase mt-2">Đăng nhập</h1>
+        <h1 className="text-center text-[26px] font-bold uppercase mt-2">
+          Đăng nhập
+        </h1>
         <Box className="mt-2">
           <TextField
             fullWidth
             size="small"
-            label="Email"
+            label="Username"
             type="text"
             variant="outlined"
           />
@@ -49,7 +51,7 @@ export default function SignIn() {
           Đăng nhập với Google
         </Button>
         <p className="text-center">
-          Nếu bạn chưa có tài khoản {" "}
+          Nếu bạn chưa có tài khoản{" "}
           <Link
             className="underline text-[#315dec] hover:text-[#274196] transition-colors"
             to="/sign-up"
