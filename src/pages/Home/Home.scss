@@ -1,0 +1,23 @@
+.home {
+    font-family: Arial, sans-serif;
+  
+    .home-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+  
+      .logo {
+        img {
+          width: 100px; // Kích thước logo
+          height: auto;
+        }
+      }
+    }
+  
+    .home-content {
+      padding: 20px;
+    }
+  }
+  
