@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./SignUp.scss";
 import Logo from "../../assets/logo.png";
@@ -7,13 +7,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../utils/rule";
 
+const signupSchema = schema.pick(['username', 'password', 'confirm_password'])
+
 export default function SignUp() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signupSchema),
   });
 
   const onSubmit = (data) => console.log("data", data);

@@ -7,13 +7,15 @@ import { schema } from "../../utils/rule";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+const signinSchema = schema.pick(['username', 'password'])
+
 export default function SignIn() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signinSchema),
   });
 
   const onSubmit = (data) => {
