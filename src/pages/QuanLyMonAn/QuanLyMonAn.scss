@@ -1,0 +1,148 @@
+.shop-category {
+    .shopcategory-header {
+        position: relative; /* Để xử lý căn chỉnh tiêu đề và các nút */
+        display: flex;
+        justify-content: center; /* Căn giữa tiêu đề */
+        align-items: center;
+        padding: 20px;
+
+        p {
+            font-size: 32px; 
+            font-weight: bold;
+            color: #fa6908; 
+            margin: 0;
+            text-transform: uppercase;
+            
+        }
+
+        .action-buttons {
+            position: absolute; 
+            top: 50%; 
+            right: 20px; 
+            transform: translateY(-50%); 
+
+            display: flex;
+            gap: 10px;
+
+            button {
+                padding: 10px 15px;
+                font-size: 10px;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                text-transform: uppercase;
+
+                &.edit-button {
+                    background-color: #007bff;
+
+                    &:hover {
+                        background-color: #0056b3;
+                    }
+                }
+
+                &.add-button {
+                    background-color: #28a745;
+
+                    &:hover {
+                        background-color: #1c7c31;
+                    }
+                }
+            }
+        }
+    }
+
+    .shopcategory-products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        justify-content: center; /* Đảm bảo lưới luôn căn giữa */
+    }
+
+    /* Popup styles */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .popup-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        position: relative;
+        width: 400px;
+        max-width: 90%;
+    }
+
+    .close-popup {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .add-product-popup {
+        h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .add-product-field {
+            margin-bottom: 15px;
+
+            label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            input[type='text'],
+            input[type='file'] {
+                width: 100%;
+                padding: 8px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            .image-preview {
+                margin-top: 10px;
+                width: 100%;
+                height: auto;
+                max-height: 150px;
+                object-fit: cover;
+                border: 1px solid #ccc;
+            }
+        }
+
+        .add-product-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #1c7c31;
+            }
+        }
+    }
+}

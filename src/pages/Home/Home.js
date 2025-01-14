@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import logo from "../../assets/logo.png";
 import "./Home.scss";
+import RandomWheel from "../../components/RandomWheel/RandomWheel";
 
 const Home = () => {
   return (
@@ -13,9 +14,11 @@ const Home = () => {
         <Navbar />
       </header>
       <main className="home-content">
+        <RandomWheel />
       </main>
     </div>
   );
 };
 
 export default Home;
+

@@ -1,0 +1,70 @@
+.item {
+    width: 280px;
+    position: relative;
+    transition: transform 0.6s;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    .image-container {
+        position: relative;
+
+        img {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .action-buttons {
+            position: absolute;
+            bottom: 10%; /* Đặt nút cách phía dưới ảnh */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            opacity: 0; /* Ẩn nút ban đầu */
+            transition: opacity 0.3s ease;
+
+            button {
+                padding: 10px 15px;
+                width: 120px;
+                font-size: 14px;
+                font-weight: bold;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .add-to-wheel-btn {
+                background-color: #74ff03;
+
+                &:hover {
+                    background-color: #47a10a;
+                }
+            }
+
+            .delete-item-btn {
+                background-color: #ff0000;
+
+                &:hover {
+                    background-color: #cf1212;
+                }
+            }
+        }
+
+        &:hover .action-buttons {
+            opacity: 1; /* Hiển thị nút khi hover vào ảnh */
+        }
+    }
+}
+
+.item p {
+    margin: 6px 0;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fa6908;
+    text-align: center;
+}
