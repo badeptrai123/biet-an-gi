@@ -1,25 +1,27 @@
-import { Box, Button, FormControl, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
-import "./SignUp.scss";
+import "./Register.scss";
 import Logo from "../../assets/logo.png";
 import { GoogleIcon } from "../../CustomIcon";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../utils/rule";
 
-export default function SignUp() {
+const signupSchema = schema.pick(["username", "password", "confirm_password"]);
+
+export default function Register() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signupSchema),
   });
 
   const onSubmit = (data) => console.log("data", data);
 
   return (
-    <Box className="container">
+    <Box className="register-container">
       <form className="sign-up" onSubmit={handleSubmit(onSubmit)}>
         <Box className="text-center flex justify-center">
           <img
@@ -93,7 +95,7 @@ export default function SignUp() {
           Bạn đã có tài khoản.{" "}
           <Link
             className="underline text-[#315dec] hover:text-[#274196] transition-colors"
-            to="/sign-in"
+            to="/login"
           >
             Đăng nhập
           </Link>

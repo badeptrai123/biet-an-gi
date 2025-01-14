@@ -1,27 +1,27 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
-import "./SignIn.scss";
 import { GoogleIcon } from "../../CustomIcon";
 import Logo from "../../assets/logo.png";
 import { schema } from "../../utils/rule";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import "./Login.scss";
 
-export default function SignIn() {
+const signinSchema = schema.pick(["username", "password"]);
+
+export default function Login() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signinSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log("data", data)
-  };
+  const onSubmit = (data) => console.log("data", data);
 
   return (
-    <Box className="container">
+    <Box className="login-container">
       <form className="sign-in" onSubmit={handleSubmit(onSubmit)}>
         <Box className="text-center flex justify-center">
           <img
@@ -40,10 +40,11 @@ export default function SignIn() {
             label="Username"
             type="text"
             variant="outlined"
-            {...register('username')}
+            {...register("username")}
           />
           {errors.username?.message && (
-            <p className="error-message">{errors.username?.message}</p>)}
+            <p className="error-message">{errors.username?.message}</p>
+          )}
         </Box>
         <Box className="mt-2">
           <TextField
@@ -52,13 +53,19 @@ export default function SignIn() {
             label="Mật khẩu"
             type="password"
             variant="outlined"
-            {...register('password')}
+            {...register("password")}
           />
           {errors.password?.message && (
-            <p className="error-message">{errors.password?.message}</p>)}
+            <p className="error-message">{errors.password?.message}</p>
+          )}
         </Box>
         <Box className="mt-2">
-          <Button type="submit" className="btn-sign-in" variant="contained" fullWidth>
+          <Button
+            className="btn-sign-in"
+            variant="contained"
+            fullWidth
+            type="submit"
+          >
             Đăng nhập
           </Button>
         </Box>
@@ -75,7 +82,7 @@ export default function SignIn() {
           Nếu bạn chưa có tài khoản{" "}
           <Link
             className="underline text-[#315dec] hover:text-[#274196] transition-colors"
-            to="/sign-up"
+            to="/register"
           >
             Đăng ký
           </Link>

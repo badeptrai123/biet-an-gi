@@ -1,15 +1,56 @@
-import { createBrowserRouter } from "react-router-dom";
-import SignIn from "./pages/SignIn/SignIn";
-import SignUp from "./pages/SignUp/SignUp";
+import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
+
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+import NotFound from "./pages/NotFound/NotFound";
+import { useSelector } from "react-redux";
+import Profile from "./pages/Profile/Profile";
+
+function ProtectedRoute() {
+  // const isAuthenticated = useSelector(
+  //   (state) => state.userSlice.isAuthenticated
+  // );
+  const isAuthenticated = true;
+
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+}
+function RejectedRoute() {
+  const isAuthenticated = useSelector(
+    (state) => state.userSlice.isAuthenticated
+  );
+
+  return !isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+}
 
 const router = createBrowserRouter([
   {
-    path: "/sign-in",
-    element: <SignIn />,
+    path: "",
+    element: <RejectedRoute />,
+    children: [
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+    ],
   },
   {
-    path: "/sign-up",
-    element: <SignUp />,
+    path: "",
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+    ],
+  },
+
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

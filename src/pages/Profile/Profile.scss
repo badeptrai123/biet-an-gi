@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  .profile {
+    margin-top: 40px;
+    width: 600px;
+    .profile-header {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+    }
+    .profile-content {
+      margin-top: 20px;
+      .form {
+        width: 100%;
+        display: flex;
+        .profile-info-item {
+          margin-top: 12px;
+        }
+      }
+    }
+  }
+}
