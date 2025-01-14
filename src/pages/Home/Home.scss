@@ -5,12 +5,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px;
+      padding: 0px;
       border-bottom: 1px solid #ddd;
   
       .logo {
         img {
-          width: 100px; // Kích thước logo
+          width: 100px;
           height: auto;
         }
       }
