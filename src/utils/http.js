@@ -6,6 +6,7 @@ import {
   getAccessTokenFromLs,
   setAccessTokenToLs,
   setProfileToLs,
+  setRefreshTokenToLs,
 } from "./auth";
 class Http {
   instance;
@@ -18,7 +19,7 @@ class Http {
       withCredentials: true,
       //   baseURL: "https://koxe.onrender.com",
       //baseURL: "https://server-graduation-thesis-1.onrender.com",
-      baseURL: "http://localhost:5000",
+      baseURL: "https://bietangi.onrender.com",
       timeout: 10000,
       headers: {
         "Content-Type": "application/json",
@@ -48,20 +49,31 @@ class Http {
         if (url === "/auth/login") {
           const data = response.data;
           this.accessToken = data.accessToken;
+          this.refreshToken = data.refreshToken;
           setAccessTokenToLs(this.accessToken);
+          setRefreshTokenToLs(this.refreshToken);
           setProfileToLs(data.user);
         } else if (url === "/auth/logout") {
           this.accessToken = "";
+          this.refreshToken = "";
           clearLs();
         }
         return response;
       },
       (error) => {
-        if (error && error.response && error.response.status === 401) {
+        if (
+          error &&
+          error.response &&
+          (error.response.status === 401 || error.response.status === 400)
+        ) {
           const config = error?.response?.config;
           const { url } = config;
-
-          if (url !== "/auth/refresh" && !this.refreshTokenRequest) {
+          if (
+            url !== "/auth/refresh" &&
+            !this.refreshTokenRequest &&
+            url !== "/auth/login" &&
+            url !== "/auth/register"
+          ) {
             this.refreshTokenRequest = this.refreshTokenRequest
               ? this.refreshTokenRequest
               : this.handleRefreshToken().finally(() => {
@@ -83,10 +95,7 @@ class Http {
               });
             });
           }
-          clearLs();
-          window.location.reload();
         } else {
-          console.log("error:", error);
           toast.error(error?.response?.msg || "Something went wrong", {
             autoClose: 3000,
           });

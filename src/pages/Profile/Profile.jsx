@@ -6,12 +6,16 @@ import {
   FormLabel,
   TextField,
 } from "@mui/material";
-import Grid from "@mui/material/Grid2";
 import "./Profile.scss";
+import Navbar from "../../components/Navbar/Navbar";
+import logo from "../../assets/logo.png";
 
 export default function Profile() {
   return (
     <>
+      <header className="home-header">
+        <Navbar />
+      </header>
       <Box className="container">
         <Box className="profile">
           <h1 className="text-center text-[30px]">Trang cá nhân</h1>
@@ -89,14 +93,6 @@ export default function Profile() {
             </FormControl>
           </Box>
         </Box>
-      </Box>
-      <Box>
-        <Grid container spacing={2} className="w-100">
-          <Grid size={8}>1</Grid>
-          <Grid size={4}>2</Grid>
-          <Grid size={4}>3</Grid>
-          <Grid size={8}>4</Grid>
-        </Grid>
       </Box>
     </>
   );

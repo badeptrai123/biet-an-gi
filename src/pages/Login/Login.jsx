@@ -1,15 +1,22 @@
 import { Box, Button, TextField } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GoogleIcon } from "../../CustomIcon";
 import Logo from "../../assets/logo.png";
 import { schema } from "../../utils/rule";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import "./Login.scss";
+import authApi from "../../apis/auth";
+import { toast } from "react-toastify";
+import { setProfileToLs } from "../../utils/auth";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/slices/UserSlice";
 
 const signinSchema = schema.pick(["username", "password"]);
 
 export default function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -18,7 +25,21 @@ export default function Login() {
     resolver: yupResolver(signinSchema),
   });
 
-  const onSubmit = (data) => console.log("data", data);
+  const onSubmit = async (data) => {
+    try {
+      const res = await authApi.login(data);
+      if (res.status === 200) {
+        dispatch(loginUser(res.data.user));
+        setProfileToLs(res.data.user);
+        toast.success("Đăng nhập thành công");
+        navigate("/");
+      } else {
+        toast.error("Đăng nhập thất bại");
+      }
+    } catch (error) {
+      toast.error(error.response.data);
+    }
+  };
 
   return (
     <Box className="login-container">
