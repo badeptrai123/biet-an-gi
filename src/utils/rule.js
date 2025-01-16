@@ -8,7 +8,7 @@ const handleConfirmPassword = (refString) => {
     .oneOf([yup.ref(refString)], "Nhập lại mật khẩu không khớp");
 };
 export const schema = yup.object({
-  // fullname: yup.string().trim().required("Tên không được để trống"),
+  fullname: yup.string().trim().required("Tên không được để trống"),
   username: yup
     .string()
     .required("Tên đăng nhập không được để trống")

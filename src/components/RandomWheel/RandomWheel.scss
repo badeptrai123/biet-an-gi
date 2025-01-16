@@ -1,143 +1,151 @@
 .random-wheel-container {
-    text-align: center;
-    margin-top: 50px;
-  
-    h1 {
-      font-size: 40px; 
-      color: #0045a0;
-      font-weight: bold;
-      margin-bottom: 20px;
+  text-align: center;
+  margin-top: 20px;
+
+  h1 {
+    font-size: 40px;
+    color: #0045a0;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .wheel-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 500px;
+    height: 350px;
+    top: 30px;
+
+    canvas {
+      position: absolute;
+      width: 85% !important;
+      height: 85% !important;
     }
-  
-    .wheel-wrapper {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0 auto;
-      width: 500px; 
-      height: 500px;
-  
-      canvas {
-        position: absolute;
-        width: 100% !important; 
-        height: 100% !important;
-      }
+
+    .gTLZXx {
+      position: absolute;
+      z-index: 5;
+      width: 16%;
+      right: 52px;
+      top: 32px;
     }
-  
-    .button-container {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-  
-      .shuffle-button,
-      .spin-button {
-        padding: 15px 30px;
-        font-size: 20px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-  
-        &:hover {
-          background-color: darken(#4caf50, 10%);
-        }
-      }
-  
-      .shuffle-button {
-        background-color: #ff0000;
-        color: white;
-  
-        &:hover {
-          background-color: #e68900;
-        }
-      }
-  
-      .spin-button {
-        background-color: #03fc0b;
-        color: white;
-  
-        &:hover {
-          background-color: #45a049;
-        }
+  }
+
+  .button-container {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    .shuffle-button,
+    .spin-button {
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: darken(#4caf50, 10%);
       }
     }
-  
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-  
-    .popup {
-      background: #fff;
-      padding: 30px;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-      animation: fadeIn 0.3s ease;
-      max-width: 500px;
-      width: 90%;
-  
-      h2 {
-        font-size: 28px;
-        color: #4caf50;
-        margin-bottom: 15px;
-      }
-  
-      p {
-        font-size: 20px;
-        margin: 10px 0;
-      }
-  
-      .popup-image-container {
-        margin: 20px 0;
-        display: flex;
-        justify-content: center;
-  
-        .popup-image {
-          width: 150px;
-          height: 150px;
-          border-radius: 50%;
-          object-fit: cover;
-          border: 5px solid #333;
-        }
-      }
-  
-      .close-button {
-        margin-top: 20px;
-        padding: 10px 20px;
-        font-size: 18px;
-        background-color: #f44336;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-  
-        &:hover {
-          background-color: #d32f2f;
-        }
+
+    .shuffle-button {
+      background-color: #ff0000;
+      color: white;
+
+      &:hover {
+        background-color: #e68900;
       }
     }
-  
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
+
+    .spin-button {
+      background-color: #03fc0b;
+      color: white;
+
+      &:hover {
+        background-color: #45a049;
       }
     }
   }
-  
+
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .popup {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease;
+    max-width: 500px;
+    width: 90%;
+
+    h2 {
+      font-size: 28px;
+      color: #4caf50;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    .popup-image-container {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+
+      .popup-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid #333;
+      }
+    }
+
+    .close-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #d32f2f;
+      }
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

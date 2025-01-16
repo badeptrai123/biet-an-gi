@@ -1,15 +1,24 @@
 import { Box, Button, TextField } from "@mui/material";
-import { Link } from "react-router-dom";
-import "./SignUp.scss";
+import { Link, useNavigate } from "react-router-dom";
+import "./Register.scss";
 import Logo from "../../assets/logo.png";
 import { GoogleIcon } from "../../CustomIcon";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../utils/rule";
+import authApi from "../../apis/auth";
+import { omit } from "lodash";
+import { toast } from "react-toastify";
 
-const signupSchema = schema.pick(['username', 'password', 'confirm_password'])
+const signupSchema = schema.pick([
+  "username",
+  "password",
+  "confirm_password",
+  "fullname",
+]);
 
-export default function SignUp() {
+export default function Register() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -18,10 +27,23 @@ export default function SignUp() {
     resolver: yupResolver(signupSchema),
   });
 
-  const onSubmit = (data) => console.log("data", data);
+  const onSubmit = async (data) => {
+    const body = omit(data, ["confirm_password"]);
+    try {
+      const res = await authApi.register(body);
+      if (res.status === 201) {
+        toast.success("Đăng ký thành công");
+        navigate("/login");
+      } else {
+        toast.error("Đăng ký thất bại");
+      }
+    } catch (error) {
+      toast.error(error.response.data);
+    }
+  };
 
   return (
-    <Box className="container">
+    <Box className="register-container">
       <form className="sign-up" onSubmit={handleSubmit(onSubmit)}>
         <Box className="text-center flex justify-center">
           <img
@@ -33,6 +55,19 @@ export default function SignUp() {
         <h1 className="text-center text-[26px] font-bold uppercase mt-2">
           Đăng ký
         </h1>
+        <Box className="mt-2">
+          <TextField
+            fullWidth
+            size="small"
+            label="Fullname"
+            type="text"
+            variant="outlined"
+            {...register("fullname")}
+          />
+          {errors.fullname?.message && (
+            <p className="error-message">{errors.fullname?.message}</p>
+          )}
+        </Box>
         <Box className="mt-2">
           <TextField
             fullWidth
@@ -95,7 +130,7 @@ export default function SignUp() {
           Bạn đã có tài khoản.{" "}
           <Link
             className="underline text-[#315dec] hover:text-[#274196] transition-colors"
-            to="/sign-in"
+            to="/login"
           >
             Đăng nhập
           </Link>

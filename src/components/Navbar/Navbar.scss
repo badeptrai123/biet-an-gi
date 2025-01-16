@@ -1,62 +1,64 @@
 .navbar {
-    position: static;
-    background-color: #FFFDD0 !important;
+  position: static;
+  background-color: #fffdd0 !important;
 
-    .login{
-      margin-right: 10px;
-    }
+  .login {
+    margin-right: 10px;
+  }
 
-    .MuiContainer-root{
-      padding-left: 30px;
-      padding-right: 30px;
+  .MuiContainer-root {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+
+    .navbar-logo-image {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
     }
-    .navbar-logo {
-      display: flex;
-      align-items: center;
-      margin-right: 2rem;
-  
-      .navbar-logo-image {
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-      }
-    }
-  
-    .navbar-menu {
-      flex-grow: 1;
-      display: flex;
-      justify-content: center; // Căn giữa các nút menu
-  
-      .navbar-menu-item {
-        margin: 8px 16px; // Thêm khoảng cách giữa các nút
-        color: rgb(167, 47, 0); // Màu chữ cho các liên kết
-        display: block;
-        font-size: 16px; // Kích thước chữ lớn hơn
-        font-weight: 600; // Làm cho chữ đậm hơn
-        text-transform: uppercase; // Chữ hoa để nổi bật hơn
-        transition: color 0.3s, border-bottom 0.3s; // Hiệu ứng chuyển tiếp
-      
-        &:hover {
-          color: #FF5733; // Màu chữ khi hover
-          border-bottom: 2px solid #FF5733; // Thêm viền dưới khi hover
-        }
-      }
-    }
-  
-    .navbar-avatar {
-      flex-grow: 0;
-  
-      .navbar-avatar-button {
-        padding:0;
-      }
-  
-      .navbar-avatar-menu {
-        margin-top: 45px;
-  
-        .navbar-avatar-menu-item {
-          text-align: center;
-        }
+  }
+
+  .navbar-menu {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center; // Căn giữa các nút menu
+
+    .navbar-menu-item {
+      margin: 8px 16px; // Thêm khoảng cách giữa các nút
+      color: rgb(167, 47, 0); // Màu chữ cho các liên kết
+      display: block;
+      font-size: 16px; // Kích thước chữ lớn hơn
+      font-weight: 600; // Làm cho chữ đậm hơn
+      text-transform: uppercase; // Chữ hoa để nổi bật hơn
+      transition: color 0.3s, border-bottom 0.3s; // Hiệu ứng chuyển tiếp
+
+      &:hover {
+        color: #ff5733; // Màu chữ khi hover
+        border-bottom: 2px solid #ff5733; // Thêm viền dưới khi hover
       }
     }
   }
-  
+
+  .navbar-avatar {
+    flex-grow: 0;
+
+    .navbar-avatar-button {
+      padding: 0;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    .navbar-avatar-menu {
+      margin-top: 45px;
+
+      .navbar-avatar-menu-item {
+        text-align: center;
+      }
+    }
+  }
+}
