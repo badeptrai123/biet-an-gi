@@ -41,6 +41,14 @@ export default function Login() {
     }
   };
 
+  const handleLoginGoogle = async () => {
+    try {
+      window.open("https://bietangi.onrender.com/auth/google", "_self");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Box className="login-container">
       <form className="sign-in" onSubmit={handleSubmit(onSubmit)}>
@@ -96,6 +104,7 @@ export default function Login() {
           variant="outline"
           fullWidth
           startIcon={<GoogleIcon />}
+          onClick={handleLoginGoogle}
         >
           Đăng nhập với Google
         </Button>
