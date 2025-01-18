@@ -86,7 +86,9 @@ function Navbar() {
                   className="navbar-avatar-button cursor-pointer"
                 >
                   <Avatar alt="User Avatar" src={profile.avatar} />
-                  <span className="text-[16px] ml-2">{profile.username}</span>
+                  <span className="text-[16px] ml-2">
+                    {profile.username || profile.google}
+                  </span>
                 </IconButton>
               </Tooltip>
               <Menu

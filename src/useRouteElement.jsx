@@ -9,6 +9,7 @@ import Register from "./pages/Register/Register";
 import NotFound from "./pages/NotFound/NotFound";
 import { useSelector } from "react-redux";
 import Profile from "./pages/Profile/Profile";
+import LoginSocial from "./components/LoginSocial/LoginSocial";
 
 function ProtectedRoute() {
   const isAuthenticated = useSelector(
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/auth/google/callback",
+        element: <LoginSocial />,
       },
     ],
   },
